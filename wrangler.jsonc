@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "web-kaki",
+  "name": "kaki",
   "compatibility_date": "2026-09-01",
   // 静的ファイルの配信のみ（Worker スクリプトなし）
   "assets": {
