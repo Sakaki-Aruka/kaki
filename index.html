@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="原稿用紙・縦書き・横書きで書けるエディタ" />
+    <meta name="theme-color" content="#123f36" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <title>原稿エディタ</title>
+  </head>
+  <body>
+    <header class="toolbar">
+      <input id="title" class="title-input" type="text" placeholder="題名" maxlength="60" />
+      <label>形式
+        <select id="mode">
+          <option value="genko">原稿用紙</option>
+          <option value="vertical">縦書き</option>
+          <option value="horizontal">横書き</option>
+        </select>
+      </label>
+      <label id="paper-field">用紙
+        <select id="paper">
+          <option value="B4">B4 横</option>
+          <option value="A4">A4 横</option>
+        </select>
+      </label>
+      <label>背景 <select id="bg"></select></label>
+      <label>文字 <select id="fg"></select></label>
+      <label>書体
+        <select id="font">
+          <option value="serif">明朝</option>
+          <option value="sans">ゴシック</option>
+        </select>
+      </label>
+      <span class="group" aria-label="文字サイズ">
+        <button id="size-down" type="button" title="小さく">A−</button>
+        <span id="size-value" class="size-value"></span>
+        <button id="size-up" type="button" title="大きく">A＋</button>
+      </span>
+      <span class="group">
+        <button id="undo" type="button" title="元に戻す（Ctrl+Z）">↶</button>
+        <button id="redo" type="button" title="やり直し（Ctrl+Shift+Z / Ctrl+Y）">↷</button>
+      </span>
+      <span class="spacer"></span>
+      <span class="group">
+        <button id="export-pdf" type="button">PDF</button>
+        <button id="export-image" type="button">画像（zip）</button>
+        <select id="image-format" aria-label="画像の形式">
+          <option value="png">PNG</option>
+          <option value="jpeg">JPEG</option>
+        </select>
+        <select id="image-quality" aria-label="画像の画質"></select>
+        <span id="image-estimate" class="hint"></span>
+        <button id="fullscreen" type="button" title="全画面">⛶</button>
+      </span>
+    </header>
+    <main id="editor"></main>
+    <footer class="statusbar">
+      <span id="count"></span>
+      <span id="sheets"></span>
+      <span class="spacer"></span>
+      <span id="export-state"></span>
+      <span id="save-state"></span>
+    </footer>
+    <div id="loading" class="loading">フォントを読み込んでいます…</div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

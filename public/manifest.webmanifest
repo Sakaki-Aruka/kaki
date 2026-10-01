@@ -1,0 +1,11 @@
+{
+  "name": "原稿エディタ",
+  "short_name": "原稿",
+  "description": "原稿用紙・縦書き・横書きで書けるエディタ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#123f36",
+  "theme_color": "#123f36",
+  "lang": "ja",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

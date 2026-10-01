@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "web-kaki",
+  "compatibility_date": "2026-09-01",
+  // 静的ファイルの配信のみ（Worker スクリプトなし）
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}

@@ -1,0 +1,172 @@
+:root {
+  --ui-bg: #f3f3f0;
+  --ui-fg: #222;
+  --ui-border: #d0d0cb;
+  --ui-muted: #6b6b66;
+  --desk: #d9d9d4;
+  color-scheme: light;
+}
+
+:root[data-dark="true"] {
+  --ui-bg: #1d1d1d;
+  --ui-fg: #e6e6e2;
+  --ui-border: #3a3a3a;
+  --ui-muted: #9a9a94;
+  --desk: #141414;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: var(--ui-bg);
+  color: var(--ui-fg);
+  font: 13px/1.4 system-ui, sans-serif;
+}
+
+.toolbar,
+.statusbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  padding: 6px 12px;
+  background: var(--ui-bg);
+}
+
+.toolbar {
+  border-bottom: 1px solid var(--ui-border);
+}
+
+.statusbar {
+  border-top: 1px solid var(--ui-border);
+  color: var(--ui-muted);
+  font-size: 12px;
+  padding: 4px 12px;
+}
+
+.toolbar label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--ui-muted);
+}
+
+.toolbar select,
+.toolbar input,
+.toolbar button {
+  font: inherit;
+  color: var(--ui-fg);
+  background: transparent;
+  border: 1px solid var(--ui-border);
+  border-radius: 4px;
+  padding: 3px 6px;
+}
+
+.toolbar button {
+  cursor: pointer;
+  min-width: 28px;
+}
+
+.toolbar button:hover {
+  border-color: var(--ui-muted);
+}
+
+.toolbar button:disabled {
+  opacity: 0.5;
+  cursor: progress;
+}
+
+.title-input {
+  width: 14em;
+}
+
+.group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.size-value {
+  min-width: 3.5em;
+  text-align: center;
+  color: var(--ui-muted);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.hint {
+  color: var(--ui-muted);
+  font-size: 12px;
+}
+
+#paper-field[hidden] {
+  display: none;
+}
+
+.editor {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.editor-scroller {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  cursor: text;
+}
+
+.editor-spacer {
+  pointer-events: none;
+}
+
+.editor-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+/* IME の候補ウィンドウの位置合わせにだけ使う、見えない入力欄 */
+.editor-input {
+  position: absolute;
+  width: 2em;
+  height: 1.5em;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  resize: none;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  white-space: pre;
+  z-index: 1;
+}
+
+.loading {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--ui-bg);
+  color: var(--ui-muted);
+  font-size: 15px;
+  z-index: 10;
+}
+
+.loading[hidden] {
+  display: none;
+}
