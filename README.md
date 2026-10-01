@@ -30,3 +30,21 @@ npm run deploy    # ビルドして Cloudflare Workers へ配信（wrangler の�
 | `public/sw.js` | オフライン用の Service Worker |
 
 画面表示・PDF・PNG はどれも `layout.ts` の同じ組版結果を `paint.ts` の同じ手順で描くので、見た目が一致する。
+
+## 配信（GitHub Actions）
+
+`main` に push すると `.github/workflows/deploy.yml` がビルドし、Cloudflare Workers へ配信する。プルリクエストではビルド（型チェックを含む）だけを行う。
+
+最初に、リポジトリの Settings → Secrets and variables → Actions に次の 2 つを登録する。未登録の間は配信を飛ばし、警告だけを出す。
+
+| シークレット | 値 |
+|---|---|
+| `CLOUDFLARE_API_TOKEN` | Cloudflare の API トークン（「Edit Cloudflare Workers」テンプレートで作成） |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare のアカウント ID |
+
+## ライセンス
+
+このプロジェクトのコードは [MIT License](LICENSE)。
+
+- フォント（源ノ明朝・源ノ角ゴシック）は SIL Open Font License 1.1。ライセンス文は `public/fonts/LICENSE-*.txt`。
+- 配信物に含まれるライブラリのライセンス文は、ビルド時に `dist/THIRD_PARTY_LICENSES.txt` にまとめられ、画面下の「ライセンス」から見られる。

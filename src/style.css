@@ -107,6 +107,10 @@ body {
   flex: 1;
 }
 
+.license-link {
+  color: inherit;
+}
+
 .hint {
   color: var(--ui-muted);
   font-size: 12px;
