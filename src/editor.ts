@@ -201,13 +201,15 @@ export class Editor {
       this.contentH = pages.length * (ph + PAGE_GAP) + PAGE_GAP;
       pages.forEach((_, i) => this.boxes.push({ x: (this.contentW - pw) / 2, y: PAGE_GAP + i * (ph + PAGE_GAP), w: pw, h: ph }));
     } else if (mode === "vertical") {
-      // 右から左へ並べる
+      // 右から左へ並べる。ページ全体が画面より狭いときは、左右の余白が均等になるよう中央に寄せる
       const pw = pages[0].w * s;
       const ph = pages[0].h * s;
-      this.contentW = Math.max(viewW, pages.length * (pw + PAGE_GAP) + PAGE_GAP);
+      const pagesW = pages.length * (pw + PAGE_GAP) + PAGE_GAP;
+      this.contentW = Math.max(viewW, pagesW);
       this.contentH = Math.max(viewH, ph + PAGE_GAP * 2);
+      const right = this.contentW - (this.contentW - pagesW) / 2;
       pages.forEach((_, i) =>
-        this.boxes.push({ x: this.contentW - (i + 1) * (pw + PAGE_GAP), y: (this.contentH - ph) / 2, w: pw, h: ph }),
+        this.boxes.push({ x: right - (i + 1) * (pw + PAGE_GAP), y: (this.contentH - ph) / 2, w: pw, h: ph }),
       );
     } else {
       const pg = pages[0];
