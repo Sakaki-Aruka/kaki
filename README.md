@@ -31,16 +31,20 @@ npm run deploy    # ビルドして Cloudflare Workers へ配信（wrangler の�
 
 画面表示・PDF・PNG はどれも `layout.ts` の同じ組版結果を `paint.ts` の同じ手順で描くので、見た目が一致する。
 
-## 配信（GitHub Actions）
+## 配信（Cloudflare Workers Builds）
 
-`main` に push すると `.github/workflows/deploy.yml` がビルドし、Cloudflare Workers へ配信する。プルリクエストではビルド（型チェックを含む）だけを行う。
+配信は Cloudflare の Workers Builds（Git 連携）で行う。`main` に push すると Cloudflare 側でビルドし、Workers へ配信する。API トークンやシークレットの登録は不要。
 
-最初に、リポジトリの Settings → Secrets and variables → Actions に次の 2 つを登録する。未登録の間は配信を飛ばし、警告だけを出す。
+Cloudflare のダッシュボード（Workers & Pages → 作成 → リポジトリをインポート）での設定：
 
-| シークレット | 値 |
+| 項目 | 値 |
 |---|---|
-| `CLOUDFLARE_API_TOKEN` | Cloudflare の API トークン（「Edit Cloudflare Workers」テンプレートで作成） |
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare のアカウント ID |
+| リポジトリ | `Sakaki-Aruka/kaki` |
+| プロジェクト名 | `web-kaki`（`wrangler.jsonc` の `name` と同じにする） |
+| ビルドコマンド | `npm run build` |
+| デプロイコマンド | `npx wrangler deploy` |
+
+Node のバージョンは `.node-version` で指定している。GitHub Actions（`.github/workflows/ci.yml`）はビルドが通るかの確認だけを行い、配信はしない。
 
 ## ライセンス
 
